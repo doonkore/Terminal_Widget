@@ -1,3 +1,4 @@
+import 'dart:async';
 import 'dart:io';
 import 'package:terminal_element/src/core/terminal_context.dart';
 import 'package:terminal_element/src/core/terminal_widget.dart';
@@ -9,19 +10,17 @@ class TermianlApp {
 
   void run () {
     if (Platform.isMacOS || Platform.isLinux) {
-      ProcessSignal.sigwinch.watch().listen((_) {
-      _drawScreen();
-    } 
-    );
+      ProcessSignal.sigwinch.watch().listen((_) {_drawScreen();});
     } else {
-      //TODO: crear logica para responsividad en windows
+     Timer.periodic(const Duration(milliseconds: 200), (timer) {_drawScreen(); });
     }
     _drawScreen();
   }
     void _drawScreen(){
       final context = TerminalContext();
       final String output = rootWidget.render(context);
-      print("$cleanScreen $output $saltoLinea");
+      stdout.write(cleanScreen);
+      print("$output $saltoLinea");
     }
 
   }

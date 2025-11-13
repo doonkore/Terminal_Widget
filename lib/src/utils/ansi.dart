@@ -2,7 +2,7 @@
 const String escapeAnsi = "\x1B[";
 const String resetAnsi = "m\x1B[0m";
 const String cleanScreen = '\x1b[2J\x1b[H'; 
-
+const String saltoLinea = "\n";
 
 
 enum Color {

@@ -11,7 +11,7 @@ class AnsiStyles {
 
   AnsiStyles({this.bold,this.italic,this.blink,this.hidden, this.reverse, this.strikethrough, this.underline});
 
-  String get codesStyle {
+  dynamic get codesStyle {
     final List<String> codes = [];
 
     if (bold == true ) {
@@ -36,11 +36,11 @@ class AnsiStyles {
       codes.add(AnsiStyle.strikethrough.codigoNumero);
     }
     if (codes.isEmpty){
-      return "";
+      return "" ;
     }
 
 
-  return codes.join(";");
+  return codes;
   }
   
 }
